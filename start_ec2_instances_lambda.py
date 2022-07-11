@@ -14,12 +14,12 @@ def lambda_handler(event, context):
         
         print("Region", region)
     
-        # Get only running instances
+        # Get only stopped instances
         instances =  ec2.instances.filter(
             Filters=[{'Name': 'instance-state-name',
                         'Values': ['stopped']}])
     
-        # Stop the instances
+        # Start the instances
         for instance in instances:
             instance.start()
             print('Started instances: ', instance.id)
